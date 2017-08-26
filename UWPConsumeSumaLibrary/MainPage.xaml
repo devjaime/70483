@@ -5,10 +5,13 @@
     xmlns:local="using:UWPConsumeSumaLibrary"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Margin="10"
+    >
     <Page.Resources>
         <Style TargetType="TextBlock" x:Key="Textos">
             <Setter Property="Foreground" Value="DarkBlue"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
         </Style>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -16,28 +19,44 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="80"></RowDefinition>
-            <RowDefinition Height="80"></RowDefinition>
-            <RowDefinition Height="80"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
         </Grid.RowDefinitions>
-
-        <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <TextBlock Style="{StaticResource Textos}" HorizontalAlignment="Left" Margin="10" 
+        <!-- DIVIDENDO -->
+        <Grid Grid.Row="0" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Style="{StaticResource Textos}" HorizontalAlignment="Left" Margin="10" 
                        TextWrapping="Wrap" Text="Dividendo" 
                        VerticalAlignment="Center" Width="89"/>
-            <TextBox x:Name="TxtA" HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="0" VerticalAlignment="Center"/>
-        </StackPanel>
-            
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Divisor" VerticalAlignment="Top" Width="89"/>
-            <TextBox x:Name="TxtB" HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <Button x:Name="BtnCalcular" Content="Dividir" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center" Width="145"/>
-        </StackPanel>
-        <StackPanel Grid.Row="3" Orientation="Horizontal">
-            <TextBlock HorizontalAlignment="Center" Margin="10" TextWrapping="Wrap" Text="Resultado" VerticalAlignment="Top"/>
-        </StackPanel>
+            <TextBox Grid.Column="1" x:Name="TxtA" HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="{Binding NumberA}" VerticalAlignment="Center"/>
+            </Grid>
+        <!-- DIVISOR -->
+        <Grid Grid.Row="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Style="{StaticResource Textos}" HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Divisor" VerticalAlignment="Top" Width="89"/>
+            <TextBox Grid.Column="1" x:Name="TxtB" HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="{Binding NumberB}" VerticalAlignment="Top"/>
+        </Grid>
+        <!-- BOTON DIVIDIR -->
+        <Grid Grid.Row="2" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="BtnCalcular"  Content="Dividir" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150"/>
+        </Grid>
+        <!-- RESULTADO -->
+        <Grid Grid.Row="3" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock HorizontalAlignment="Center" Margin="10" TextWrapping="Wrap" Text="{Binding NumberResultado}" VerticalAlignment="Top"/>
+        </Grid>
     </Grid>
 </Page>
