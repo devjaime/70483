@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{045D22FD-9D3F-4BCE-BE9F-E695199E4502}</ProjectGuid>
+    <ProjectGuid>{438619DE-CDD2-477B-844F-694BF185F1B7}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>TrabajoDelegadosMiguelMunoz</RootNamespace>
-    <AssemblyName>TrabajoDelegadosMiguelMunoz</AssemblyName>
+    <RootNamespace>ConsoleConsumeSumaLibrary</RootNamespace>
+    <AssemblyName>ConsoleConsumeSumaLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,12 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Numeros.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SumaLibrary\SumaLibrary.csproj">
+      <Project>{67e31db2-376c-452f-b592-56fad0930f78}</Project>
+      <Name>SumaLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
