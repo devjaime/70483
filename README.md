@@ -25,4 +25,4 @@ Restricciones:
 Realiza al menos dos de los siguientes tipos de aplicaciones: Consola, Xamarin.Android, Xamarin.iOS, WPF, ASP.NET MVC o UWP.
 
 
-Ver la correccion aqui : https://youtu.be/APaqIomFy_A?t=59m5s
+Ver la correccion aqui : [Programming in C# - Métodos anónimos](https://youtu.be/APaqIomFy_A?t=59m5s)
