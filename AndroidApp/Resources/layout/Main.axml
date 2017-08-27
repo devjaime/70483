@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout1">
+        <TextView
+            android:text="Dividendo :"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="160.0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/textView1"
+            android:padding="20dp"
+            android:layout_marginLeft="22.5dp"
+            android:layout_marginTop="19.5dp" />
+        <EditText
+            android:inputType="number"
+            android:layout_width="158.5dp"
+            android:layout_height="match_parent"
+            android:id="@+id/Number_A"
+            android:layout_marginLeft="21.0dp"
+            android:layout_marginTop="20.5dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout1">
+        <TextView
+            android:text="Divisor :"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="160.0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/textView2"
+            android:padding="20dp"
+            android:layout_marginLeft="22.5dp"
+            android:layout_marginTop="17.5dp" />
+        <EditText
+            android:inputType="number"
+            android:layout_width="159.0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/Number_B"
+            android:layout_marginLeft="21.0dp"
+            android:layout_marginRight="84.0dp"
+            android:layout_marginTop="17.5dp" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/BtnCalcular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello"
+        android:layout_marginTop="60.0dp"
+        android:layout_marginRight="36.5dp"
+        android:layout_marginLeft="41.5dp" />
+</LinearLayout>
