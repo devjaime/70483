@@ -1,13 +1,13 @@
 # 70483
 
-> Tareas en el grupo de estudio para la certificacion 70-483
+> Tareas en el grupo de estudio para la certificacion 70-483 con [https://ticapacitacion.com/](https://ticapacitacion.com/)
 
 ## TAREA 1 DELEGADOS
 
 1. Crear una clase Numeros.cs que devuelva una lista de de n enteros pares comprenida entre 0 y n.
 2. Antes de mostrar el resultado, queremos ver por pantalla cual es el entero que ha empezado a procesarse.
 
-![Alt Screenshot](img/ResutadoEsperadoTarea1.png?raw=true "F5")
+![Alt Screenshot](img/ResutadoEsperadoTarea1.PNG?raw=true "F11")
 
 > La solucion debe hacerse con __delegados__
 
