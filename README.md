@@ -2,6 +2,11 @@
 
 > Tareas en el grupo de estudio para la certificacion 70-483
 
+## TAREA 1 DELEGADOS
+
+1. Crear una clase Numeros.cs que devuelva una lista de de n enteros pares comprenida entre 0 y n.
+2. Al ...
+
 ## TAREA 2 DELEGADOS
 
 1. Crear una Biblioteca de Clases que contenga una clase que exponga un método de instancia con la siguiente firma y valor de retorno:
