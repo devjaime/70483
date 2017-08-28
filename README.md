@@ -7,7 +7,7 @@
 1. Crear una clase Numeros.cs que devuelva una lista de de n enteros pares comprenida entre 0 y n.
 2. Antes de mostrar el resultado, queremos ver por pantalla cual es el entero que ha empezado a procesarse.
 
-![Alt Screenshot](ResutadoEsperadoTarea1.png?raw=true "F11")
+![Alt Screenshot](img/ResutadoEsperadoTarea1.png?raw=true "F5")
 
 > La solucion debe hacerse con __delegados__
 
