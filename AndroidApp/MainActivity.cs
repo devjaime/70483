@@ -9,10 +9,7 @@ namespace AndroidApp
     [Activity(Label = "AndroidApp", MainLauncher = true, Icon = "@mipmap/icon")]
     public class MainActivity : Activity
     {
-        int count = 1;
-
         SumaLibrary.MyLib SumaLib = new MyLib();
-
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -29,14 +26,19 @@ namespace AndroidApp
             EditText numberA = FindViewById<EditText>(Resource.Id.Number_A);
             EditText numberB = FindViewById<EditText>(Resource.Id.Number_B);
 
+            SumaLib.DivisionPorCero += (x,y) =>
+            {
+                textView.Text = $"Division por cero entre {x} y {y}\n";
+            };
+
             button.Click += delegate {
                 //
+                textView.Text = "";
                 var A = Convert.ToInt32(numberA.Text);
                 var B = Convert.ToInt32(numberB.Text);
                 var result = SumaLib.Divide(A, B);
-                textView.Text = result.ToString();
+                textView.Text += $"Resultado : {result.ToString()}";
             };
         }
     }
 }
-

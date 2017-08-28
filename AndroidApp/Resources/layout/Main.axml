@@ -57,7 +57,7 @@
         android:layout_marginRight="36.5dp"
         android:layout_marginLeft="41.5dp" />
     <TextView
-        android:text="Medium Text"
+        android:text="Resultado :"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="340.0dp"
         android:layout_height="131.0dp"
