@@ -1,6 +1,8 @@
 ﻿using Android.App;
 using Android.Widget;
 using Android.OS;
+using SumaLibrary;
+using System;
 
 namespace AndroidApp
 {
@@ -8,6 +10,9 @@ namespace AndroidApp
     public class MainActivity : Activity
     {
         int count = 1;
+
+        SumaLibrary.MyLib SumaLib = new MyLib();
+
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -20,8 +25,16 @@ namespace AndroidApp
             // and attach an event to it
             Button button = FindViewById<Button>(Resource.Id.BtnCalcular);
 
+            TextView textView = FindViewById<TextView>(Resource.Id.textResultado);
+            EditText numberA = FindViewById<EditText>(Resource.Id.Number_A);
+            EditText numberB = FindViewById<EditText>(Resource.Id.Number_B);
+
             button.Click += delegate {
-                button.Text = string.Format("{0} clicks!", count++);
+                //
+                var A = Convert.ToInt32(numberA.Text);
+                var B = Convert.ToInt32(numberB.Text);
+                var result = SumaLib.Divide(A, B);
+                textView.Text = result.ToString();
             };
         }
     }

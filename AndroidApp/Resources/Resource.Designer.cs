@@ -72,6 +72,9 @@ namespace AndroidApp
 			// aapt resource value: 0x7f060000
 			public const int linearLayout1 = 2131099648;
 			
+			// aapt resource value: 0x7f060006
+			public const int textResultado = 2131099654;
+			
 			// aapt resource value: 0x7f060001
 			public const int textView1 = 2131099649;
 			

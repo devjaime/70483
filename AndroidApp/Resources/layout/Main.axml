@@ -56,4 +56,14 @@
         android:layout_marginTop="60.0dp"
         android:layout_marginRight="36.5dp"
         android:layout_marginLeft="41.5dp" />
+    <TextView
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="340.0dp"
+        android:layout_height="131.0dp"
+        android:id="@+id/textResultado"
+        android:layout_marginBottom="52.0dp"
+        android:layout_marginTop="55.5dp"
+        android:layout_marginLeft="22.0dp"
+        android:layout_marginRight="0.0dp" />
 </LinearLayout>
