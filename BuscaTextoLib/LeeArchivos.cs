@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-//Realizar un componente.Net que permita buscar un texto contenido en los archivos de un directorio.
+/*Realizar un componente.Net que permita buscar un texto contenido en los archivos de un directorio.
 
 //Ejemplo:
 //Buscar delegate C:\datos<enter>
@@ -14,17 +14,16 @@ using System.IO;
 //el componente debe de funcionar en una aplicacion de consola y WPF.
 
 //En consola mostrar el resultado en la consola.
-//En WPF mostrar el resultado en un grid.
-
-
+//En WPF mostrar el resultado en un grid.*/
 
 namespace BuscaTextoLib
 {
-
     public class Leer
     {
-        public delegate void Encontrado(object o, EncontradoEventArgs e);
-        public event Encontrado TextoEncontrado ;
+
+        public delegate void EventHandler(object o, EncontradoEventArgs e);
+        // event + tipo de delegado + nombre del evento
+        public event EventHandler TextoEncontrado ;
 
         public string DireccionDossier { get; private set; }
 
@@ -65,8 +64,6 @@ namespace BuscaTextoLib
                         {
                             TextoEncontrado?.Invoke(this, e);
                         }
-                        
-
                         //var encontrado = $"{item}, linea {Linea} columna {Columna}"; // C:\datos\program.cs, linea 23, columna 35
                     }
                 }

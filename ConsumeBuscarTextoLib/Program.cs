@@ -4,45 +4,50 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BuscaTextoLib;
+using static System.Console;
 
 namespace ConsumeBuscarTextoLib
 {
     public class Program
     {
+        private const string PathFolder = "C:\\datos";
+        private const string TextoToMatch = "deleGate";
+
+        static Action Fin = () => {
+
+            Write("Seguir buscando ? O/N\n");
+
+            if (ReadKey(true).Key == ConsoleKey.O)
+            {
+                // Retornar el parametro del eventargs a true y continuar.
+            }
+            else
+            {
+                // Final del tratamiento.
+                WriteLine($"\nPulsa una tecla para salir...");
+                ReadKey(true);
+            }
+        };
+
         static void Main(string[] args)
         {
+            Buscar(PathFolder, TextoToMatch);
 
-            Buscar(@"C:\datos", "delegate");
-
-
+            Fin();
         }
 
-        public static string Buscar(string camino, string cadena)
-        {
-            Leer leer = new Leer(camino, cadena);
+        static void Buscar(string pathFolder, string texto)
+        { 
+            var PathFolder = pathFolder;
+            var TextoToMatch = texto;
 
-            leer.TextoEncontrado += Leer_TextoEncontrado;
+            Leer Lectura = new Leer(PathFolder, TextoToMatch);
+            Lectura.TextoEncontrado += (o, e) =>
+            {
+                var encontrado = $"{e.Archivo}, linea {e.Line} columna {e.Column}"; // C:\datos\program.cs, linea 23, columna 35
+            };
 
-            return string.Empty;
-        }
-
-        private static void Leer_TextoEncontrado(object o, EncontradoEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        static void Buscar(string path, string texto)
-
-            Leer Lectura = new Leer(path, texto);
-
-            //Leer.TextoEncontrado += (object o, EventArgs e) =>
-            //{
-            //    //var encontrado = $"{e}, linea {Linea} columna {Columna}"; // C:\datos\program.cs, linea 23, columna 35
-            //};
-
-            //Leer.Busca(path, texto);
-
-           
+            Lectura.Busca(PathFolder, TextoToMatch);
         }
     }
 }
