@@ -20,6 +20,7 @@ namespace ConsumeBuscarTextoLib
             if (ReadKey(true).Key == ConsoleKey.O)
             {
                 // Retornar el parametro del eventargs a true y continuar.
+
             }
             else
             {
@@ -38,13 +39,12 @@ namespace ConsumeBuscarTextoLib
 
         static void Buscar(string pathFolder, string texto)
         { 
-            var PathFolder = pathFolder;
-            var TextoToMatch = texto;
+            Leer Lectura = new Leer(pathFolder, texto);
 
-            Leer Lectura = new Leer(PathFolder, TextoToMatch);
             Lectura.TextoEncontrado += (o, e) =>
             {
                 var encontrado = $"{e.Archivo}, linea {e.Line} columna {e.Column}"; // C:\datos\program.cs, linea 23, columna 35
+                WriteLine(encontrado);
             };
 
             Lectura.Busca(PathFolder, TextoToMatch);

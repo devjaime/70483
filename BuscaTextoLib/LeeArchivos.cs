@@ -20,7 +20,6 @@ namespace BuscaTextoLib
 {
     public class Leer
     {
-
         public delegate void EventHandler(object o, EncontradoEventArgs e);
         // event + tipo de delegado + nombre del evento
         public event EventHandler TextoEncontrado ;
@@ -31,7 +30,7 @@ namespace BuscaTextoLib
 
         public Leer(string Direccion, string StringToSearch)
         {
-            var Uri = new UriBuilder(AppContext.BaseDirectory).Uri.ToString();
+            //var Uri = new UriBuilder(AppContext.BaseDirectory).Uri.ToString();
 
             DireccionDossier = Direccion;
             TextToMatch = StringToSearch;
@@ -44,9 +43,24 @@ namespace BuscaTextoLib
         /// <param name="StringToSearch">Texto a buscar dentro de los ficheros</param>
         public  void Busca(string Direccion, string StringToSearch)
         {
-            var Path = (Direccion == string.Empty) ? new UriBuilder(AppContext.BaseDirectory).Uri.ToString() : Direccion;
+            //var Path = (Direccion == string.Empty) ? new UriBuilder(AppContext.BaseDirectory).Uri.ToString() : Direccion;
+            //TODO : Aqui salta una exception !!!
+            var test = Direccion;
+            var str = StringToSearch;
 
-            var Ficheros = Directory.GetFileSystemEntries(Path, StringToSearch, SearchOption.AllDirectories);
+            string[] Ficheros;
+
+            try
+            {
+                Ficheros = Directory.GetFileSystemEntries(Direccion, StringToSearch, SearchOption.AllDirectories);
+            }
+            catch (Exception)
+            {
+                // BANG !
+                throw;
+            }
+
+            
 
             foreach (var item in Ficheros)
             {
