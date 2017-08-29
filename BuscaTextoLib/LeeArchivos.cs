@@ -21,16 +21,16 @@ using System.IO;
 namespace BuscaTextoLib
 {
 
-    public class LeeArchivos
+    public class Leer
     {
-        public delegate void Encontrado(object o, EventArgs e);
+        public delegate void Encontrado(object o, EncontradoEventArgs e);
         public event Encontrado TextoEncontrado ;
 
         public string DireccionDossier { get; private set; }
 
         public string TextToMatch { get; private set; }
 
-        public LeeArchivos(string Direccion, string StringToSearch)
+        public Leer(string Direccion, string StringToSearch)
         {
             var Uri = new UriBuilder(AppContext.BaseDirectory).Uri.ToString();
 
@@ -43,7 +43,7 @@ namespace BuscaTextoLib
         /// </summary>
         /// <param name="Direccion">Carpeta donde buscar</param>
         /// <param name="StringToSearch">Texto a buscar dentro de los ficheros</param>
-        public void Busca(string Direccion, string StringToSearch)
+        public  void Busca(string Direccion, string StringToSearch)
         {
             var Path = (Direccion == string.Empty) ? new UriBuilder(AppContext.BaseDirectory).Uri.ToString() : Direccion;
 
@@ -60,6 +60,7 @@ namespace BuscaTextoLib
                         var Columna = Linea.IndexOf(StringToSearch).ToString();
 
                         EncontradoEventArgs e = new EncontradoEventArgs() { Archivo = item, Line = Linea, Column = Columna, Cancelar=false };
+
                         if (!e.Cancelar)
                         {
                             TextoEncontrado?.Invoke(this, e);
@@ -85,7 +86,7 @@ namespace BuscaTextoLib
 
         }
 
-        public EncontradoEventArgs(string MiArchivo, bool DeseaCancelar):base()
+        public EncontradoEventArgs(string MiArchivo, bool DeseaCancelar) : base()
         {
             this.Archivo = MiArchivo;
             Cancelar = DeseaCancelar;
