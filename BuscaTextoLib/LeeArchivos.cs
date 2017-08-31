@@ -21,6 +21,7 @@ namespace BuscaTextoLib
     public class Leer
     {
         public delegate void EventHandler(object o, EncontradoEventArgs e);
+
         // event + tipo de delegado + nombre del evento
         public event EventHandler TextoEncontrado ;
 
@@ -30,8 +31,6 @@ namespace BuscaTextoLib
 
         public Leer(string Direccion, string StringToSearch)
         {
-            //var Uri = new UriBuilder(AppContext.BaseDirectory).Uri.ToString();
-
             DireccionDossier = Direccion;
             TextToMatch = StringToSearch;
         }
@@ -45,6 +44,7 @@ namespace BuscaTextoLib
         {
             //var Path = (Direccion == string.Empty) ? new UriBuilder(AppContext.BaseDirectory).Uri.ToString() : Direccion;
             //TODO : Aqui salta una exception !!!
+
             var test = Direccion;
             var str = StringToSearch;
 
@@ -59,8 +59,6 @@ namespace BuscaTextoLib
                 // BANG !
                 throw;
             }
-
-            
 
             foreach (var item in Ficheros)
             {
@@ -92,12 +90,12 @@ namespace BuscaTextoLib
         public string Column { get; set; }
         public bool Cancelar { get; set; } = false;
 
-        public EncontradoEventArgs():base()
+        public EncontradoEventArgs()
         {
 
         }
 
-        public EncontradoEventArgs(string MiArchivo, bool DeseaCancelar) : base()
+        public EncontradoEventArgs(string MiArchivo, bool DeseaCancelar)
         {
             this.Archivo = MiArchivo;
             Cancelar = DeseaCancelar;

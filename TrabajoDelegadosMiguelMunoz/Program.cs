@@ -8,19 +8,16 @@ namespace TrabajoDelegadosMiguelMunoz
 {
     class Program
     {
+        // Declaration del delegado (ici Action delegue propose par le .net framework)
         static Action Fin = () => {
-            Console.WriteLine($"key to skip...");
-            Console.ReadKey(true);
+            Console.WriteLine($"<Enter> para salir...");
+            Console.ReadLine();
         };
 
+        // Punto de entrada 
         static void Main(string[] args)
         {
             Numeros N = new Numeros();
-
-            N.DaElNumerodeTarea += (x) => {
-                Console.WriteLine($"Tarea Empezada : {x}"); return x;
-            };
-
             var List = N.GetNumber(10);
 
             foreach (var item in List)
@@ -28,6 +25,7 @@ namespace TrabajoDelegadosMiguelMunoz
                 Console.WriteLine(item);
             }
 
+            // Appel du delegué (pas de paramettres)
             Fin();
         }
     }
