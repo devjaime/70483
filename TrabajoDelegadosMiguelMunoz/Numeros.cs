@@ -24,7 +24,7 @@ namespace TrabajoDelegadosMiguelMunoz
                 if (i % 2 == 0)
                 {
                     ListaNumeros.Add(i);
-                    System.Threading.Thread.Sleep(10000);
+                    System.Threading.Thread.Sleep(2000);
                 }
             }
             return ListaNumeros;

@@ -10,7 +10,7 @@ namespace TrabajoDelegadosMiguelMunoz
     {
         // Declaration del delegado (ici Action delegue propose par le .net framework)
         static Action Fin = () => {
-            Console.WriteLine($"<Enter> para salir...");
+            Console.WriteLine($" <Enter> para salir...");
             Console.ReadLine();
         };
 
@@ -22,7 +22,7 @@ namespace TrabajoDelegadosMiguelMunoz
 
             foreach (var item in List)
             {
-                Console.WriteLine(item);
+                Console.WriteLine($" {item}");
             }
 
             // Appel du delegué (pas de paramettres)
