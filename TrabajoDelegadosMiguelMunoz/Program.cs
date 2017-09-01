@@ -8,25 +8,41 @@ namespace TrabajoDelegadosMiguelMunoz
 {
     class Program
     {
-        // Declaration del delegado (ici Action delegue propose par le .net framework)
+        // Declaracion del delegado Action es un delegado predefinido por el .net framework
+        // al igual que Func y Predicate.
+        // Aqui > Declaracion + instantiacion ! (ejemplo pequeño utilizado al terminar el programa)
         static Action Fin = () => {
             Console.WriteLine($" <Enter> para salir...");
             Console.ReadLine();
         };
 
-        // Punto de entrada 
         static void Main(string[] args)
         {
-            Numeros N = new Numeros();
-            var List = N.GetNumber(10);
+            // Creacion del delegado.
+            Action<int> TareaEmpezada = MuestraTareaEmpezada; 
 
+            Numeros N = new Numeros();
+
+            // Pasando el delegado a la funcion.
+            var List = N.GetNumber(10, TareaEmpezada); 
+
+            // Muestra los resultados de N.Getnumber.
             foreach (var item in List)
             {
                 Console.WriteLine($" {item}");
             }
 
-            // Appel du delegué (pas de paramettres)
+            // LLama al delegado de fin de programa.
             Fin();
+        }
+
+        /// <summary>
+        /// Muestra la tarea que se empezo a procesar.
+        /// </summary>
+        /// <param name="numeroTarea">Entero de 1 a n devuelto por GetNumber</param>
+        private static void MuestraTareaEmpezada(int numeroTarea)
+        {
+            Console.WriteLine($" Procesando {numeroTarea}");
         }
     }
 }
