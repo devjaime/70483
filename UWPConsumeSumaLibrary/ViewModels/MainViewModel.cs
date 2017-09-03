@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SumaLibrary;
+using System.Windows.Input;
 
 namespace UWPConsumeSumaLibrary.ViewModels
 {
@@ -45,16 +42,28 @@ namespace UWPConsumeSumaLibrary.ViewModels
             }
         }
 
-        SumaLibrary.MyLib LibreriaSuma = new MyLib();
+        public ICommand CalculaCommand { get; private set; }
 
         public MainViewModel()
         {
-            NumberA = 20; //test bindig
-            NumberB = 10;
+            CalculaCommand = new Commands.RelayCommand(CalcularOperacion);
+        }
 
-            var result = Convert.ToString(LibreriaSuma.Divide(NumberA, NumberB));
+        string R = string.Empty;
 
-            NumberResultado = $"Cociente resultado : {result}";
+        private void CalcularOperacion()
+        {
+            SumaLibrary.MyLib Calculador = new MyLib();
+            Calculador.DivisionPorCero = DivididoPorCero;
+
+            NumberResultado = Calculador.Divide(NumberA, NumberB).ToString();
+
+            NumberResultado = (NumberResultado != "0") ? NumberResultado : R;
+        }
+
+        private void DivididoPorCero(int A, int B)
+        {
+            R = $"Division por 0 : {A} / {B}";
         }
     }
 }

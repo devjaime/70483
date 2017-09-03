@@ -4,7 +4,7 @@ namespace SumaLibrary
 {
     public class MyLib
     {
-        public event Action<int,int> DivisionPorCero;
+        public Action<int,int> DivisionPorCero;
 
         /// <summary>
         /// Devuelve el resultado de la división de A por B.
