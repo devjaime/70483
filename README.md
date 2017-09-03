@@ -35,5 +35,5 @@ Realiza al menos dos de los siguientes tipos de aplicaciones: Consola, Xamarin.A
 
 Ver los requisitos aqui : [Programming in C# - Métodos anónimos](https://youtu.be/APaqIomFy_A?t=59m5s)
 
-    * [__Apuntes Delegados__](https://github.com/netapau/70483/tree/master/01Delegados)
-    * [__Apuntes Metodos Anonimos__](02MetodosAnonimos/)
+    * [__Apuntes Delegados__](/01Delegados/README.md)
+    * [__Apuntes Metodos Anonimos__](/02MetodosAnonimos/README.md)
