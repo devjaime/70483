@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 
 /*Realizar un componente.Net que permita buscar un texto contenido en los archivos de un directorio.
