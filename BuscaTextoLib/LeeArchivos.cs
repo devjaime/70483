@@ -1,7 +1,8 @@
 ﻿using System;
 using System.IO;
 
-/*Realizar un componente.Net que permita buscar un texto contenido en los archivos de un directorio.
+/*Realizar un componente.Net que permita buscar un texto contenido en los archivos
+ * de un directorio.
 
 //Ejemplo:
 //Buscar delegate C:\datos<enter>
@@ -33,6 +34,7 @@ namespace BuscaTextoLib
 
         public Leer(string Direccion, string StringToSearch)
         {
+            // Aqui hacer test para cadenas vacias y datos incorrectos !!!
             DireccionDossier = Direccion;
             TextToMatch = StringToSearch;
         }
@@ -42,41 +44,43 @@ namespace BuscaTextoLib
         /// </summary>
         /// <param name="Direccion">Carpeta donde buscar</param>
         /// <param name="StringToSearch">Texto a buscar dentro de los ficheros</param>
-        public  void Busca(string Direccion, string StringToSearch)
+        public void Busca(string Direccion, string StringToSearch)
         {
-            var ficheros = Directory.GetFiles(Direccion);
-
-            foreach (var fichero in ficheros)
+            if (!string.IsNullOrEmpty(Direccion) && Directory.Exists(Direccion))
             {
-                var lineas = File.ReadAllLines(fichero);
+                var ficheros = Directory.GetFiles(Direccion);
 
-                int i = 0;
-
-                foreach (var line in lineas)
+                foreach (var fichero in ficheros)
                 {
-                    i++;
-                    if (line.Contains(StringToSearch))
-                    {
-                        var Columna = line.IndexOf(StringToSearch).ToString();
+                    var lineas = File.ReadAllLines(fichero);
 
-                        e.Archivo = fichero;
-                        e.Line = i.ToString();
-                        e.Column = Columna;
-                        
-                        if (!e.Cancelar)
+                    int i = 0;
+
+                    foreach (var line in lineas)
+                    {
+                        i++;
+                        if (line.Contains(StringToSearch))
                         {
-                            TextoEncontrado?.Invoke(this, e);
+                            var Columna = line.IndexOf(StringToSearch).ToString();
+
+                            e.Archivo = fichero;
+                            e.Line = i.ToString();
+                            e.Column = Columna;
+                        
+                            if (!e.Cancelar)
+                            {
+                                TextoEncontrado?.Invoke(this, e);
+                            }
                         }
                     }
                 }
+
+                // TODO: Hacer una funcion con recursividad para que tome en cuenta los ficheros de los directorios anidados.
+                //foreach (var directorio in Directory.GetDirectories(Direccion))
+                //{
+
+                //}
             }
-
-            // TODO: Hacer una funcion con recursividad para que tome en cuenta los ficheros de los directorios anidados.
-            //foreach (var directorio in Directory.GetDirectories(Direccion))
-            //{
-
-            //}
-
         }
     }
 
