@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 /*Realizar un componente.Net que permita buscar un texto contenido en los archivos de un directorio.
@@ -25,6 +26,8 @@ namespace BuscaTextoLib
         // event + tipo de delegado + nombre del evento
         public event EventHandler TextoEncontrado ;
 
+        EncontradoEventArgs e = new EncontradoEventArgs();
+
         public string DireccionDossier { get; private set; }
 
         public string TextToMatch { get; private set; }
@@ -42,44 +45,39 @@ namespace BuscaTextoLib
         /// <param name="StringToSearch">Texto a buscar dentro de los ficheros</param>
         public  void Busca(string Direccion, string StringToSearch)
         {
-            //var Path = (Direccion == string.Empty) ? new UriBuilder(AppContext.BaseDirectory).Uri.ToString() : Direccion;
-            //TODO : Aqui salta una exception !!!
+            var ficheros = Directory.GetFiles(Direccion);
 
-            var test = Direccion;
-            var str = StringToSearch;
-
-            string[] Ficheros;
-
-            try
+            foreach (var fichero in ficheros)
             {
-                Ficheros = Directory.GetFileSystemEntries(Direccion, StringToSearch, SearchOption.AllDirectories);
-            }
-            catch (Exception)
-            {
-                // BANG !
-                throw;
-            }
+                var lineas = File.ReadAllLines(fichero);
 
-            foreach (var item in Ficheros)
-            {
-                StreamReader Reader = File.OpenText(item);
-                while (!Reader.EndOfStream)
+                int i = 0;
+
+                foreach (var line in lineas)
                 {
-                    var Linea = Reader.ReadLine();
-                    if (Linea.Contains(StringToSearch))
+                    i++;
+                    if (line.Contains(StringToSearch))
                     {
-                        var Columna = Linea.IndexOf(StringToSearch).ToString();
+                        var Columna = line.IndexOf(StringToSearch).ToString();
 
-                        EncontradoEventArgs e = new EncontradoEventArgs() { Archivo = item, Line = Linea, Column = Columna, Cancelar=false };
-
+                        e.Archivo = fichero;
+                        e.Line = i.ToString();
+                        e.Column = Columna;
+                        
                         if (!e.Cancelar)
                         {
                             TextoEncontrado?.Invoke(this, e);
                         }
-                        //var encontrado = $"{item}, linea {Linea} columna {Columna}"; // C:\datos\program.cs, linea 23, columna 35
                     }
                 }
             }
+
+            // TODO: Hacer una funcion con recursividad para que tome en cuenta los ficheros de los directorios anidados.
+            //foreach (var directorio in Directory.GetDirectories(Direccion))
+            //{
+
+            //}
+
         }
     }
 
@@ -93,12 +91,6 @@ namespace BuscaTextoLib
         public EncontradoEventArgs()
         {
 
-        }
-
-        public EncontradoEventArgs(string MiArchivo, bool DeseaCancelar)
-        {
-            this.Archivo = MiArchivo;
-            Cancelar = DeseaCancelar;
         }
     }
 }
