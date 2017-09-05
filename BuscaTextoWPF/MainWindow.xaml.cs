@@ -52,6 +52,7 @@ namespace BuscaTextoWPF
 
         private void BtnBuscar_Click(object sender, RoutedEventArgs e)
         {
+            ResultadosBusqueda.Clear();
             Buscar(TxtDirectorio.Text, TxtABuscar.Text);
         }
     }

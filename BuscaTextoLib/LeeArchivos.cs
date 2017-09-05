@@ -22,7 +22,6 @@ namespace BuscaTextoLib
     public class Leer
     {
         public delegate void EventHandler(object o, EncontradoEventArgs e);
-
         // event + tipo de delegado + nombre del evento
         public event EventHandler TextoEncontrado ;
 
@@ -53,20 +52,16 @@ namespace BuscaTextoLib
                 foreach (var fichero in ficheros)
                 {
                     var lineas = File.ReadAllLines(fichero);
-
                     int i = 0;
-
                     foreach (var line in lineas)
                     {
                         i++;
                         if (line.Contains(StringToSearch))
                         {
                             var Columna = line.IndexOf(StringToSearch).ToString();
-
                             e.Archivo = fichero;
                             e.Line = i.ToString();
                             e.Column = Columna;
-                        
                             if (!e.Cancelar)
                             {
                                 TextoEncontrado?.Invoke(this, e);
@@ -74,11 +69,9 @@ namespace BuscaTextoLib
                         }
                     }
                 }
-
                 // TODO: Hacer una funcion con recursividad para que tome en cuenta los ficheros de los directorios anidados.
                 //foreach (var directorio in Directory.GetDirectories(Direccion))
                 //{
-
                 //}
             }
         }

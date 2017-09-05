@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BuscaTextoLib;
 using static System.Console;
 
@@ -38,8 +34,7 @@ namespace ConsumeBuscarTextoLib
 
                 if (ReadKey(true).Key == ConsoleKey.O)
                 {
-                    // Retornar el parametro del eventargs a true y continuar.
-                    
+                    // Retornar el parametro del eventargs a true y continuar.                    
                     e.Cancelar = false;
                 }
                 else
