@@ -29,12 +29,12 @@ namespace BuscaTextoWPF
 
                 var Result = new Resultado { Archivo = e.Archivo, Linea = e.Line, Columna = e.Column };
 
-                // AQUI AñADIR AL DATAGRID
                 ResultadosBusqueda.Add(Result);
 
                 MiDataGrid.ItemsSource = ResultadosBusqueda;
 
-                // PREGUNTAR AL AÑADIR UNA LINEA AL DATAGRID
+                NumeroResultados.Content = $"Resultados : {e.OcurrenciasEncontradas.ToString()}";
+                
                 var result = MessageBox.Show("Seguir buscando ?","Buscar...",MessageBoxButton.YesNo);
 
                 if (MessageBoxResult.Yes == result)
@@ -52,6 +52,7 @@ namespace BuscaTextoWPF
 
         private void BtnBuscar_Click(object sender, RoutedEventArgs e)
         {
+            NumeroResultados.Content = $"Resultados : 0";
             ResultadosBusqueda.Clear();
             Buscar(TxtDirectorio.Text, TxtABuscar.Text);
         }

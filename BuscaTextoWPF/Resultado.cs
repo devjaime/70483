@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace BuscaTextoWPF
 {
@@ -14,7 +15,7 @@ namespace BuscaTextoWPF
                 if (elArchivo != value)
                 {
                     elArchivo = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Archivo"));
+                    OnPropertyChanged();
                 }
             }
             get
@@ -31,7 +32,7 @@ namespace BuscaTextoWPF
                 if (laLinea != value)
                 {
                     laLinea = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Linea"));
+                    OnPropertyChanged();
                 }
             }
             get
@@ -48,7 +49,7 @@ namespace BuscaTextoWPF
                 if (laColumna != value)
                 {
                     laColumna = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Columna"));
+                    OnPropertyChanged();
                 }
             }
             get
@@ -57,9 +58,13 @@ namespace BuscaTextoWPF
             }
         }
 
+        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         public Resultado()
         {
-
         }
 
         public override string ToString()

@@ -1,9 +1,7 @@
 # 70483
 
 > Tareas en el grupo de estudio para la certificacion 70-483 con [https://ticapacitacion.com/](https://ticapacitacion.com/)
-
 >[Rumbo a la certificación Programming C#](http://ticapacitacion.com/curso/certcs/)
-
 >[Grupo de estudio del examen 70-483: Programming in C#](https://ticapacitacion.com/foros/20000)
 
 ## TAREA 1 DELEGADOS
@@ -24,17 +22,16 @@
   public int Divide(int A, int B)
 ```
 
-El método debe devolver el resultado de la división de A entre B.
+ El método debe devolver el resultado de la división de A entre B.
 
 2. Crear una aplicación que solicite 2 números al usuario, consuma el método de la Biblioteca de Clases y que muestre el resultado de la división.
 
 > Si se realiza una división entre cero, la aplicación deberá mostrar el mensaje “División entre cero” junto con los valores de los números que se están dividiendo.
 
-Restricciones:
---------------
-    La aplicación cliente no debe implementar lógica de validación. 
-    (No debe haber instrucciones de toma de decisión como if-else).
-    La aplicación cliente no debe declarar variables públicas.
+### Restricciones
+
+    1. La aplicación cliente no debe implementar lógica de validación (No debe haber instrucciones de toma de decisión como if-else).
+    2. La aplicación cliente no debe declarar variables públicas.
 
 Realiza al menos dos de los siguientes tipos de aplicaciones: Consola, Xamarin.Android, Xamarin.iOS, WPF, ASP.NET MVC o UWP.
 

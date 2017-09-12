@@ -1,21 +1,28 @@
 ﻿using System;
 using System.IO;
 
-/*Realizar un componente.Net que permita buscar un texto contenido en los archivos
- * de un directorio.
+#region [Specifications]
 
-//Ejemplo:
-//Buscar delegate C:\datos<enter>
+/*
+Realizar un componente.Net que permita buscar un texto contenido 
+en los archivos de un directorio.
 
-//C:\datos\program.cs, linea 23, columna 35
-//C:\datos\program.cs, linea 23, columna 55
+Ejemplo:
+Buscar delegate C:\datos<enter>
 
-//Debo poder ver el archivo que contiene el texto y cancelar si ya no quiero continuar la busqueda. 
-//Preguntar al usuario si desea continuar despues de haber encontrado un archivo.
-//el componente debe de funcionar en una aplicacion de consola y WPF.
+C:\datos\program.cs, linea 23, columna 35
+C:\datos\program.cs, linea 23, columna 55
 
-//En consola mostrar el resultado en la consola.
-//En WPF mostrar el resultado en un grid.*/
+Debo poder ver el archivo que contiene el texto y cancelar si ya no quiero continuar la busqueda. 
+Preguntar al usuario si desea continuar despues de haber encontrado un archivo.
+La busqueda debe hacerse en el directorio y sub-directorios.
+el componente debe de funcionar en una aplicacion de consola y WPF.
+
+En consola: mostrar el resultado en la consola.
+En WPF    : mostrar el resultado en un grid.
+*/
+
+#endregion
 
 namespace BuscaTextoLib
 {
@@ -27,52 +34,86 @@ namespace BuscaTextoLib
 
         EncontradoEventArgs e = new EncontradoEventArgs();
 
-        public string DireccionDossier { get; private set; }
+        static int ocurrencias = 0;
 
+        public int OcurrenciasEncontradas { get {return ocurrencias; } private set { } }
+
+        /// <summary>
+        /// Directorio de busqueda.
+        /// </summary>
+        public string PathDirectorio { get; private set; }
+
+        /// <summary>
+        /// Texto a buscar dentro de los archivos.
+        /// </summary>
         public string TextToMatch { get; private set; }
 
         public Leer(string Direccion, string StringToSearch)
         {
             // Aqui hacer test para cadenas vacias y datos incorrectos !!!
-            DireccionDossier = Direccion;
-            TextToMatch = StringToSearch;
+            PathDirectorio = Direccion;
+
+            if (!string.IsNullOrWhiteSpace(StringToSearch))
+            {
+                TextToMatch = StringToSearch;
+                ocurrencias = 0;
+            }
         }
 
         /// <summary>
-        /// Busca el contenido de una string en los ficheros de una carpeta
+        /// Busca un texto en el contenido de los archivos de un directorio
         /// </summary>
-        /// <param name="Direccion">Carpeta donde buscar</param>
-        /// <param name="StringToSearch">Texto a buscar dentro de los ficheros</param>
+        /// <param name="Direccion">Directorio donde buscar</param>
+        /// <param name="StringToSearch">Texto a buscar dentro de los archivos</param>
         public void Busca(string Direccion, string StringToSearch)
         {
             if (!string.IsNullOrEmpty(Direccion) && Directory.Exists(Direccion))
             {
-                var ficheros = Directory.GetFiles(Direccion);
+                // Leo en los archivos.
+                LeerEnArchivos(Direccion);
 
-                foreach (var fichero in ficheros)
+                // Buscando Sub-directorios.
+                var CuantosSubDirrectorios = Directory.GetDirectories(Direccion);
+
+                // Si encuentro.
+                if (CuantosSubDirrectorios.Length > 0)
                 {
-                    var lineas = File.ReadAllLines(fichero);
-                    int i = 0;
-                    foreach (var line in lineas)
+                    // Iterando y buscando.
+                    foreach (var directorio in CuantosSubDirrectorios)
                     {
-                        i++;
-                        if (line.Contains(StringToSearch))
+                        Busca(directorio, StringToSearch);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Busqueda de texto en los archivos de un directorio.
+        /// </summary>
+        /// <param name="directorio"></param>
+        void LeerEnArchivos(string directorio)
+        {
+            var ficheros = Directory.GetFiles(directorio);
+            foreach (var fichero in ficheros)
+            {
+                var lineas = File.ReadAllLines(fichero);
+                int i = 0;
+                foreach (var line in lineas)
+                {
+                    i++;
+                    if (line.Contains(TextToMatch))
+                    {
+                        e.OcurrenciasEncontradas = ++ocurrencias;
+                        var Columna = line.IndexOf(TextToMatch).ToString();
+                        e.Archivo = fichero;
+                        e.Line = i.ToString();
+                        e.Column = Columna;
+                        if (!e.Cancelar)
                         {
-                            var Columna = line.IndexOf(StringToSearch).ToString();
-                            e.Archivo = fichero;
-                            e.Line = i.ToString();
-                            e.Column = Columna;
-                            if (!e.Cancelar)
-                            {
-                                TextoEncontrado?.Invoke(this, e);
-                            }
+                            TextoEncontrado?.Invoke(this, e);
                         }
                     }
                 }
-                // TODO: Hacer una funcion con recursividad para que tome en cuenta los ficheros de los directorios anidados.
-                //foreach (var directorio in Directory.GetDirectories(Direccion))
-                //{
-                //}
             }
         }
     }
@@ -82,11 +123,7 @@ namespace BuscaTextoLib
         public string Archivo { get; set; }
         public string Line { get; set; }
         public string Column { get; set; }
+        public int OcurrenciasEncontradas { get; set; }
         public bool Cancelar { get; set; } = false;
-
-        public EncontradoEventArgs()
-        {
-
-        }
     }
 }
